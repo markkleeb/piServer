@@ -55,7 +55,7 @@ def index():
 		if uploaded_file and allowed_file(uploaded_file.filename):
 			# create filename, prefixed with datetime
 			now = datetime.datetime.now()
-			filename = now.strftime('%Y%m%d%H%M%s') + "-" + secure_filename(uploaded_file.filename)
+			filename = now.strftime('%Y-%m-%d-%H:%M:%s') + "-" + secure_filename(uploaded_file.filename)
 			# thumb_filename = now.strftime('%Y%m%d%H%M%s') + "-" + secure_filename(uploaded_file.filename)
 
 			# connect to s3
@@ -75,9 +75,6 @@ def index():
 			if k and k.size > 0:
 				
 				submitted_image = models.Image()
-				submitted_image.title = request.form.get('title')
-				submitted_image.description = request.form.get('description')
-				submitted_image.postedby = request.form.get('postedby')
 				submitted_image.filename = filename # same filename of s3 bucket file
 				submitted_image.save()
 
@@ -100,6 +97,54 @@ def index():
 		}
 
 		return render_template("main.html", **templateData)
+
+
+
+@app.route("/add", methods=["POST"])
+def newloop():
+
+	#app.logger.debug("JSON received...")
+	#app.logger.debug(request.form)
+
+	
+	if request.form:
+		data = request.form
+
+		now = datetime.datetime.now()
+		filename = now.strftime('%Y%m%d%H%M%s') + "-" + secure_filename(request.files["img"].filename)
+
+		img = models.Image()
+		img.filename = filename
+		
+
+		#app.logger.debug(loop.title)
+
+		if request.files["img"]:# and allowed_file(request.files["loop"].filename):
+
+			app.logger.debug(request.files["img"].mimetype)
+
+			s3conn = boto.connect_s3(os.environ.get('AWS_ACCESS_KEY_ID'),os.environ.get('AWS_SECRET_ACCESS_KEY'))
+
+			b = s3conn.get_bucket(os.environ.get('AWS_BUCKET')) #bucket name defined in .env
+			k = b.new_key(b)
+			k.key =  filename
+			k.set_metadata("Content-Type" , request.files["img"].mimetype)
+			k.set_contents_from_string(request.files["img"].stream.read())
+			k.make_public()
+
+
+			if k and k.size > 0:
+
+				img.save() 
+				return "Received!" 
+
+
+	else:
+
+		return "FAIL : %s" %request.form
+	# get form data - create new idea
+
+
 
 @app.route('/delete/<imageid>')
 def delete_image(imageid):
