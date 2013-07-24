@@ -89,10 +89,12 @@ def index():
 	else:
 		# get existing images
 		images = models.Image.objects.order_by('-timestamp')
+		tweets = models.Tweet.objects.order_by('-timestamp')
 		
 		# render the template
 		templateData = {
 			'images' : images,
+			'tweets' : tweets,
 			'form' : photo_upload_form
 		}
 
