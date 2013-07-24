@@ -55,7 +55,7 @@ def index():
 		if uploaded_file and allowed_file(uploaded_file.filename):
 			# create filename, prefixed with datetime
 			now = datetime.datetime.now()
-			filename = now.strftime('%Y%m%d%H%M%s') + "-" + secure_filename(uploaded_file.filename)
+			filename = now.strftime('%Y-%m-%d-%H:%M:%s') + "-" + secure_filename(uploaded_file.filename)
 			# thumb_filename = now.strftime('%Y%m%d%H%M%s') + "-" + secure_filename(uploaded_file.filename)
 
 			# connect to s3
