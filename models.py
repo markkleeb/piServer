@@ -6,12 +6,18 @@ from flask.ext.mongoengine import *
 from datetime import datetime
 
 
+class Tweet(mongoengine.Document):
+	text = mongoengine.StringField()
+
+class Song(mongoengine.Document):
+	song = FileField()
+	songfile = mongoengine.StringField()
+
 
 class Image(mongoengine.Document):
 
 	
 	filename = mongoengine.StringField()
-
 	# Timestamp will record the date and time idea was created.
 	timestamp = mongoengine.DateTimeField(default=datetime.now())
 

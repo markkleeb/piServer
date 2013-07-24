@@ -145,6 +145,31 @@ def newloop():
 	# get form data - create new idea
 
 
+@app.route("/tweet", methods=["POST"])
+def newtweet():
+
+	#app.logger.debug("JSON received...")
+	#app.logger.debug(request.form)
+
+	
+	if request.form:
+		data = request.form
+
+		now = datetime.datetime.now()
+		
+
+		newtweet = models.Tweet()
+		newtweet.text = data.get("text")
+		newtweet.save()		
+		return "Received!" 
+
+
+	else:
+
+		return "FAIL : %s" %request.form
+	# get form data - create new idea
+
+
 
 @app.route('/delete/<imageid>')
 def delete_image(imageid):
