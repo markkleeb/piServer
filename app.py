@@ -172,7 +172,20 @@ def newtweet():
 	# get form data - create new idea
 
 
+@app.route('/delete2/<imageid>')
+def delete_tweet(imageid):
+	tweet = models.Tweet.objects.get(id=imageid)
 
+	if tweet:
+
+		tweet.delete()
+
+		return redirect('/')
+
+	else:
+		return "Unable to find tweet"
+
+		
 @app.route('/delete/<imageid>')
 def delete_image(imageid):
 	
