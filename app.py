@@ -71,7 +71,7 @@ def hash():
 				
 		if new_post.save():
 
-			return redirect('/hashtags')
+			return redirect('/')
 
 		else:
 			return "uhoh there was an error " 
