@@ -67,6 +67,9 @@ def hash():
 		new_post.still = request.form.get("still")
 		new_post.video = request.form.get("video")
 		new_post.prompt = request.form.get("prompt")
+		new_post.prompt2 = request.form.get("prompt2")
+		new_post.prompt3 = request.form.get("prompt3")
+		new_post.prompt4 = request.form.get("prompt4")
 				
 				
 		if new_post.save():
@@ -74,7 +77,7 @@ def hash():
 			return redirect('/')
 
 		else:
-			return "uhoh there was an error " 
+			return "error " 
 
 
 
@@ -109,9 +112,9 @@ def newloop():
 		img.filename = filename
 		
 
-		#app.logger.debug(loop.title)
+		
 
-		if request.files["img"]:# and allowed_file(request.files["loop"].filename):
+		if request.files["img"]:# and allowed_file(request.files["img"].filename):
 
 			app.logger.debug(request.files["img"].mimetype)
 
@@ -159,7 +162,7 @@ def newtweet():
 	else:
 
 		return "FAIL : %s" %request.form
-	# get form data - create new idea
+
 
 
 @app.route('/delete2/<imageid>')
@@ -219,6 +222,9 @@ def data():
 
 			tmpLoop = {
 				'prompt' : n.prompt,
+				'prompt2' : n.prompt2,
+				'prompt3' : n.prompt3,
+				'prompt4' : n.prompt4,
 				'guitar' : n.guitar,
 				'typewriter' : n.typewriter,
 				'still' : n.still,

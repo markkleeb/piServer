@@ -19,7 +19,11 @@ class Question(mongoengine.Document):
 	video = mongoengine.StringField()
 	typewriter = mongoengine.StringField()
 	prompt = mongoengine.StringField()
+	prompt2 = mongoengine.StringField()
+	prompt3 = mongoengine.StringField()
+	prompt4 = mongoengine.StringField()
 
+	
 class Image(mongoengine.Document):
 
 	
