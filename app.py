@@ -26,7 +26,7 @@ app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024 # 16 megabyte file upload
 mongoengine.connect('mydata', host=os.environ.get('MONGOLAB_URI'))
 app.logger.debug("Connecting to MongoLabs")
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'mp4'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'mp4', 'h264'])
 
 
 # --------- Routes ----------
