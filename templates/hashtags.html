@@ -1,0 +1,26 @@
+{% extends "layout/main.html" %}
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+	{{ form.prompt.label }}
+	{{ form.prompt }}
+
+	{{ form.typewriter.label }}
+	{{ form.typewriter }}
+
+	{{ form.guitar.label }}
+	{{ form.guitar }}
+
+	{{ form.still.label }}
+	{{ form.still }}
+
+	{{ form.video.label }}
+	{{ form.video }}
+
+	<input class="btn btn-success" type="submit" value="upload">
+
+</form>
+
+
+
+
+{% endblock %}

@@ -13,6 +13,12 @@ class Song(mongoengine.Document):
 	song = FileField()
 	songfile = mongoengine.StringField()
 
+class Question(mongoengine.Document):
+	guitar = mongoengine.StringField()
+	still = mongoengine.StringField()
+	video = mongoengine.StringField()
+	typewriter = mongoengine.StringField()
+	prompt = mongoengine.StringField()
 
 class Image(mongoengine.Document):
 
@@ -22,7 +28,7 @@ class Image(mongoengine.Document):
 	timestamp = mongoengine.DateTimeField(default=datetime.now())
 
 
-photo_form = model_form(Image)
+photo_form = model_form(Question)
 
 # Create a WTForm form for the photo upload.
 # This form will inhirit the Photo model above

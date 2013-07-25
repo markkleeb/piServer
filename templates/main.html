@@ -9,7 +9,20 @@ img {
 
 {% endblock %}
 {% block body %}
+	<div class="row">
+		<h2>Current Hash Tags</h2>
+		{% for q in prompts %}
 
+		<p><strong>Prompt:</strong> {{ q.prompt }} </p>
+		<p><strong>Typewriter:</strong> {{ q.typewriter }} </p>
+		<p><strong>Guitar:</strong> {{ q.guitar }} </p>
+		<p><strong>Still:</strong> {{ q.still }} </p>
+		<p><strong>Video:</strong> {{ q.video }} </p>
+		{% endfor %}		
+
+		<p>
+		<a href="/hashtags">Update</a>
+	</p>
 	<div class="row">
 		
 		<div class="span7">
