@@ -1,8 +1,33 @@
 {% extends "layout/main.html" %}
 {% block body %}
+
+<div class="row">
+		<div class="span5">
+		    {% if form.errors %}
+		    <ul class="errors">
+		        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+		            {% for error in field_errors %}
+		                <li class="alert alert-error">
+		                	{{ form[field_name].label.text }} - {{ error }}
+		               	</li>
+		            {% endfor %}
+		        {% endfor %}
+		    </ul>
+		    {% endif %}
+		    
 <form method="POST" enctype="multipart/form-data">
-	{{ form.prompt.label }}
+	Typewriter Prompt:
 	{{ form.prompt }}
+
+	Guitar Prompt:
+	{{ form.prompt2 }}
+
+	Still Cam Prompt:
+	{{ form.prompt3 }}
+
+	Video Cam Prompt:
+	{{ form.prompt4 }}
+
 
 	{{ form.typewriter.label }}
 	{{ form.typewriter }}
