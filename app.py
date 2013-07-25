@@ -26,7 +26,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024 # 16 megabyte file upload
 mongoengine.connect('mydata', host=os.environ.get('MONGOLAB_URI'))
 app.logger.debug("Connecting to MongoLabs")
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'mp4'])
 
 
 # --------- Routes ----------
@@ -185,7 +185,7 @@ def delete_tweet(imageid):
 	else:
 		return "Unable to find tweet"
 
-		
+
 @app.route('/delete/<imageid>')
 def delete_image(imageid):
 	
